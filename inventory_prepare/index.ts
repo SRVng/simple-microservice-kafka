@@ -1,6 +1,6 @@
 import EventEmitter from 'stream';
 import { createConsumer, startConsumer } from './src/consumer';
-import { createProducer, createProducerStream, startProducer } from './src/producer';
+import { createProducerStream } from './src/producer';
 import { startCommandLine } from './src/producer/cli';
 
 async function main(arg: string): Promise<void> {
@@ -16,10 +16,6 @@ async function main(arg: string): Promise<void> {
       stream.write(data);
     });
 
-  } 
-  if (arg === 'producer') {
-    const { producer } = createProducer();
-    startProducer({ producer, topic: 'inventory_request.in' });
   }
 
   if (arg === 'producer-input') {
@@ -27,10 +23,7 @@ async function main(arg: string): Promise<void> {
     const { producer: stream } = createProducerStream('inventory_request.in');
 
     stream.write(input);
-
-    process.exit();
   }
-
 }
 
 await main(process.argv[2]);

@@ -1,7 +1,7 @@
 import Kafka from 'node-rdkafka';
 import { EventEmitter } from 'stream';
-import { getEnv } from 'utility';
-import { runWorker } from './model';
+import { getEnv } from '../utils';
+import { runWorker } from './worker';
 
 function getConfig(groupId: string): Kafka.ConsumerGlobalConfig {
   return {

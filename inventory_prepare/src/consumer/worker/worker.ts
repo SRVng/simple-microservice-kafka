@@ -1,5 +1,5 @@
 import { workerData, parentPort, isMainThread } from 'worker_threads';
-import { transformRequest, validateRequest } from '.';
+import { transformRequest, validateRequest } from '../model';
 import { eventType as producerEventType } from '../../producer/schema';
 import { eventType as consumerEventType, type InventoryRequest, type ItemRequest } from '../schema';
 
@@ -19,7 +19,7 @@ if (!isMainThread) {
   if (isValid) {
     const validData: InventoryRequest = transformRequest(data);
 
-    console.log(`Sending message to producer: ${validData.request_id}`);
+    console.log(`Sending message: ${validData.request_id}`);
     
     const producerData = producerEventType.toBuffer(validData);
 

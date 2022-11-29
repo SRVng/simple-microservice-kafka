@@ -1,6 +1,6 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import Kafka from 'node-rdkafka';
-import { getEnv } from '../../../utility/env';
+import { getEnv } from '../utils';
 
 function getConfig(): Kafka.ProducerGlobalConfig {
   return {
@@ -13,35 +13,8 @@ function getConfig(): Kafka.ProducerGlobalConfig {
   };
 }
 
-function createProducer():{ producer: Kafka.Producer } {
-  return { producer: new Kafka.Producer(getConfig(), {}) };
-}
-
 function createProducerStream(topic: string): { producer: Kafka.ProducerStream } {
   return { producer: Kafka.Producer.createWriteStream(getConfig(), {}, { topic }) };
 }
 
-interface StartProducerParams {
-  producer: Kafka.Producer;
-  topic: string;
-}
-
-function startProducer(params: StartProducerParams): void {
-  const { producer, topic } = params;
-
-  producer.on('ready', () => {
-    console.log('Producer ready to produce for', topic);
-  });
-
-  producer.on('connection.failure', (error) => {
-    console.error('Connection failed' + error.message);
-  });
-
-  producer.on('event.error', (error) => {
-    console.error('Producer event error from topic: ', topic, error.message);
-  });
-
-  producer.connect();
-}
-
-export { createProducer, createProducerStream, startProducer };
+export { createProducerStream };

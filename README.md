@@ -12,19 +12,17 @@ SEC_PROTOCOL=
 git clone https://github.com/SRVng/simple-microservice-kafka.git
 cd simplpe-microservice-kafka
 npm ci
-npm run build:all
+npm run build
 ```
 
 ## Scripts
 ```
 ## inventory_prepare
-npm run start:prepare consumer
-npm run start:prepare producer
-npm run start:prepare producer-input
+npm run start:prepare
+npm run start:prepare-input
 
 ## inventory_ready
-npm run start:ready consumer
-npm run start:ready producer
+npm run start:ready
 ```
 
 ## Description

@@ -1,21 +1,18 @@
 {
   "name": "sukkati-care-microservices",
   "workspaces": [
-    "utility",
     "inventory_prepare",
     "inventory_ready"
   ],
   "scripts": {
     "lint:all": "npm run lint --workspaces",
     "compile:all": "npm run compile --workspaces",
-    "build:all": " npm run lint:all && npm run compile --workspaces",
+    "build": " npm run lint:all && npm run compile --workspaces",
     "compile:prepare": "npm run -w inventory_prepare compile",
-    "start:prepare": "npm run -w inventory_prepare start",
+    "start:prepare": "npm run -w inventory_prepare start consumer",
+    "start:prepare-input": "npm run -w inventory_prepare start producer-input",
     "compile:ready": "npm run -w inventory_ready compile",
     "start:ready": "npm run -w inventory_ready start"
-  },
-  "dependencies": {
-    "dotenv": "^16.0.3"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.44.0",

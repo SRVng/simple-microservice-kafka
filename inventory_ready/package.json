@@ -2,10 +2,10 @@
   "name": "inventory_ready",
   "version": "1.0.0",
   "description": "",
-  "main": "./dist/inventory_ready/index.js",
+  "main": "./dist/index.js",
   "scripts": {
     "compile": "rm -rf dist && tsc",
-    "start": "node --experimental-specifier-resolution=node ./dist/inventory_ready/index.js",
+    "start": "node --experimental-specifier-resolution=node ./dist/index.js",
     "lint": "npx eslint ."
   },
   "keywords": [],
@@ -14,8 +14,7 @@
   "dependencies": {
     "avsc": "^5.7.7",
     "dotenv": "^16.0.3",
-    "node-rdkafka": "^2.14.0",
-    "utility": "file:../utility"
+    "node-rdkafka": "^2.14.0"
   },
   "devDependencies": {
     "@types/node": "^18.11.9",

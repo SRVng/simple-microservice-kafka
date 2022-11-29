@@ -1,5 +1,3 @@
-// import fs from 'fs';
-import { isMainThread, Worker as WorkerThread } from 'worker_threads';
 import { randomInt, randomUUID } from 'crypto';
 import { InventoryRequest, InventoryReady } from '../schema';
 
@@ -23,23 +21,4 @@ function transformRequest(data: InventoryRequest): InventoryReady {
   return itemList;
 }
 
-async function runWorker<T>(workerData: T): Promise<unknown> {
-  if (!isMainThread) {
-    return;
-  }
-
-  return new Promise((resolve, reject) => {
-    const worker = new WorkerThread('./dist/inventory_ready/src/consumer/model/worker.js', { workerData });
-
-    worker.on('message', (value) => {
-      resolve(value);
-    });
-
-    worker.on('error', (err) => {
-      console.error(err);
-      reject(err);
-    });
-  });
-}
-
-export { transformRequest, runWorker };
+export { transformRequest };
